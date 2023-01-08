@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Library.Library">
+    <Position X="2.75" Y="1" Width="4.25" />
+    <AssociationLine Name="Books" Type="Library.Book">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.715" Y="0.049" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Members" Type="Library.Member">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.015" Y="0.905" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgACAAAAAgAAAAAQAAAAMAAAgAAA=</HashCode>
+      <FileName>Library.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Books" />
+      <Property Name="Members" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Library.Book">
+    <Position X="11.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Library.Book.BookGenre">
+        <TypeIdentifier>
+          <NewMemberFileName>Book.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="LoanHistory" Type="Library.Loan">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.194" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAIAAACAQCAgAEAkoKIAAICCAAAAAAAAAAAEACACAAA=</HashCode>
+      <FileName>Book.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LoanHistory" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Library.Member">
+    <Position X="2.75" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAQQAkAEAAAAAAAAAAAgA=</HashCode>
+      <FileName>Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.Loan">
+    <Position X="6.75" Y="5.25" Width="2.75" />
+    <AssociationLine Name="Borrower" Type="Library.Member">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.216" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>DAAAAAgAAAEQAAABBAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Loan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Borrower" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
