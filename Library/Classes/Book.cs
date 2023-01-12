@@ -133,16 +133,14 @@ namespace Library
                     }
                     else
                     {
-                        goto AddBook;
+                        break;
                     }
                 }
             }
-            AddBook:
 
             Library.Books.Add(newBook);
 
             Library.SerializeListToXML("books.xml", Library.Books);
-            MessageBox.Show("Book added!");
         }
 
         // Method that removes the book object from the list of books and serializes it
@@ -157,13 +155,12 @@ namespace Library
                 Library.Books.Remove(book);
 
                 Library.SerializeListToXML("books.xml", Library.Books);
-                MessageBox.Show("Book removed!");
             }
         }
 
         // Method to get the current borrower of a book - returns null if book is not currently loaned to anybody
 
-        public Member GetBorrower()
+        public Member? GetBorrower()
         {
             foreach (Loan loan in LoanHistory)
             {

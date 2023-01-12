@@ -48,7 +48,7 @@ namespace Library
 
         // Method that adds the loan object to the list of loans of the book object
 
-        public void LoanBook(Loan loan, Book currentBook)
+        public void LendBook(Loan loan, Book currentBook)
         {
             currentBook.LoanHistory.Add(loan);
 

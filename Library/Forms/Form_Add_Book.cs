@@ -76,6 +76,7 @@
 
                 // Updates dataGridView in Form_Library
                 mainForm.GetData(Library.Books).ResetBindings(false);
+                MessageBox.Show("Book added!");
             }
         }
     }

@@ -67,17 +67,15 @@ namespace Library
                     }
                     else
                     {
-                        goto AddMember;
+                        break;
                     }
                 }
             }
-            AddMember:
 
             member.Id = member.GenerateId();
             Library.Members.Add(member);
 
             Library.SerializeListToXML("members.xml", Library.Members);
-            MessageBox.Show("Member added!");
         }
 
         // Method that removes the member object from the list of members and serializes it
@@ -92,7 +90,6 @@ namespace Library
                 Library.Members.Remove(member);
 
                 Library.SerializeListToXML("members.xml", Library.Members);
-                MessageBox.Show("Member removed!");
             }
         }
 

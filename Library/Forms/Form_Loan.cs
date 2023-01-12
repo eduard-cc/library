@@ -120,7 +120,7 @@ namespace Library
                 // Create new loan object
                 Loan loan = new Loan(member, borrowDate, returnDate);
 
-                loan.LoanBook(loan, currentBook);
+                loan.LendBook(loan, currentBook);
 
                 // Update dataGridView, labels and buttons
 

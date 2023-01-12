@@ -82,6 +82,7 @@ namespace Library
                 book.RemoveBook(book);
 
                 GetData(Library.Books).ResetBindings(false);
+                MessageBox.Show("Book removed!");
             }
             else
             {
@@ -110,6 +111,11 @@ namespace Library
             // Updates dataGridView with the list of found books
 
             GetData(Library.Search(title, author, genre)).ResetBindings(false);
+
+            if (dataGridViewBooks.Rows.Count == 0)
+            {
+                MessageBox.Show("No books found!");
+            }
         }
     }
 }

@@ -63,31 +63,15 @@ namespace Library
         {
             List<Book> foundBooks = new List<Book>();
 
-            // Selects books that contain the title and author filters
+            // Selects books that contain the title, author and genre filters
 
-            var query1 = from books in Books
-                        where books.Title.ToLower().Contains(title.ToLower()) &&
-                              books.Author.ToLower().Contains(author.ToLower())
-                        select books;
+            var query = from book in Books
+                        where book.Title.ToLower().Contains(title.ToLower()) &&
+                              book.Author.ToLower().Contains(author.ToLower()) &&
+                              (!(Enum.IsDefined(typeof(BookGenre), genre)) || book.Genre == genre)
+                        select book;
 
-            foundBooks = query1.ToList();
-
-            // Selects books in foundBooks that also match the genre filter (if genre is defined)
-
-            if (Enum.IsDefined(typeof(BookGenre), genre))
-            {
-                var query2 = from books in foundBooks
-                             where books.Genre == genre
-                             select books;
-
-                foundBooks = query2.ToList();
-            }
-
-            if (foundBooks.Count == 0)
-            {
-                MessageBox.Show("No books found!");
-            }
-
+            foundBooks = query.ToList();
             return foundBooks;
         }
     }
