@@ -72,11 +72,14 @@
                 // Create new book object
                 Book newBook = new Book(title, author, genre, publicationDate, pages, isbn13, description);
 
-                newBook.AddBook(newBook, isbn13, title);
+                DialogResult dialogResult = newBook.AddBook(newBook, isbn13, title);
 
-                // Updates dataGridView in Form_Library
-                mainForm.GetData(Library.Books).ResetBindings(false);
-                MessageBox.Show("Book added!");
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Updates dataGridView in Form_Library
+                    mainForm.GetData(Library.Books).ResetBindings(false);
+                    MessageBox.Show("Book added!");
+                }
             }
         }
     }

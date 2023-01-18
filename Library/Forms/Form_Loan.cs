@@ -87,7 +87,7 @@ namespace Library
             Member member = (Member)comboBoxMembers.SelectedItem;
             string member_id = textBoxMemberId.Text;
             string borrowDate = datePickerLoan.Value.Date.ToString("d MMMM yyyy");
-            string returnDate = null;
+            string? returnDate = null;
 
             // Check for empty or invalid inputs
 
@@ -133,6 +133,7 @@ namespace Library
         }
 
         // Return the current book
+
         private void btnReturn_Click(object sender, EventArgs e)
         {
             string return_date = datePickerReturn.Value.Date.ToString("d MMMM yyyy");

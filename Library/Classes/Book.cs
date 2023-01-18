@@ -101,10 +101,12 @@ namespace Library
             set { loanHistory = value; }
         }
 
-        // Method that checks for duplicates, adds the book object to the list of books and serializes it
+        // Method that checks for duplicates then adds a book
 
-        public void AddBook(Book newBook, string isbn13, string title)
+        public DialogResult AddBook(Book newBook, string isbn13, string title)
         {
+            DialogResult dialogResult = new DialogResult();
+
             // Check if book with the same ISBN-13 already exists
 
             foreach (Book bookObj in Library.Books)
@@ -114,7 +116,8 @@ namespace Library
                     MessageBox.Show($"A book with the same ISBN13 already exists!" +
                         $"\n\nThat book is:\n{bookObj}\nISBN-13: {bookObj.isbn13}");
 
-                    return;
+                    dialogResult = DialogResult.No;
+                    return dialogResult;
                 }
             }
 
@@ -124,12 +127,12 @@ namespace Library
             {
                 if (bookObj.Title.ToLower() == title.ToLower())
                 {
-                    DialogResult dialogResult = MessageBox.Show($"The book '{bookObj}' already exists!" +
+                    dialogResult = MessageBox.Show($"The book '{bookObj}' already exists!" +
                         $"\n\nAre you sure you want to add this book?", "Add book", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.No)
                     {
-                        return;
+                        return dialogResult;
                     }
                     else
                     {
@@ -138,14 +141,18 @@ namespace Library
                 }
             }
 
-            Library.Books.Add(newBook);
+            // Adds the book object to the list of books and serializes it
 
+            Library.Books.Add(newBook);
             Library.SerializeListToXML("books.xml", Library.Books);
+
+            dialogResult = DialogResult.Yes;
+            return dialogResult;
         }
 
         // Method that removes the book object from the list of books and serializes it
 
-        public void RemoveBook(Book book)
+        public DialogResult RemoveBook(Book book)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove '"
                 + book + "' ?", "Remove book", MessageBoxButtons.YesNo);
@@ -153,9 +160,9 @@ namespace Library
             if (dialogResult == DialogResult.Yes)
             {
                 Library.Books.Remove(book);
-
                 Library.SerializeListToXML("books.xml", Library.Books);
             }
+            return dialogResult;
         }
 
         // Method to get the current borrower of a book - returns null if book is not currently loaned to anybody

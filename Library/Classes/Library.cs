@@ -68,7 +68,7 @@ namespace Library
             var query = from book in Books
                         where book.Title.ToLower().Contains(title.ToLower()) &&
                               book.Author.ToLower().Contains(author.ToLower()) &&
-                              (!(Enum.IsDefined(typeof(BookGenre), genre)) || book.Genre == genre)
+                              (!Enum.IsDefined(typeof(BookGenre), genre) || book.Genre == genre)
                         select book;
 
             foundBooks = query.ToList();

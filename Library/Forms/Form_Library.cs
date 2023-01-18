@@ -79,10 +79,13 @@ namespace Library
                 // Get the selected book object
                 Book book = (Book)dataGridViewBooks.CurrentRow.DataBoundItem;
 
-                book.RemoveBook(book);
+                DialogResult dialogResult = book.RemoveBook(book);
 
-                GetData(Library.Books).ResetBindings(false);
-                MessageBox.Show("Book removed!");
+                if (dialogResult == DialogResult.Yes)
+                {
+                    GetData(Library.Books).ResetBindings(false);
+                    MessageBox.Show("Book removed!");
+                }
             }
             else
             {
@@ -109,8 +112,9 @@ namespace Library
             }
 
             // Updates dataGridView with the list of found books
+            List<Book> foundBooks = Library.Search(title, author, genre);
 
-            GetData(Library.Search(title, author, genre)).ResetBindings(false);
+            GetData(foundBooks).ResetBindings(false);
 
             if (dataGridViewBooks.Rows.Count == 0)
             {
