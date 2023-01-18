@@ -50,8 +50,11 @@
             this.btnLoan = new System.Windows.Forms.Button();
             this.datePickerLoan = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblCurrentBorrower3 = new System.Windows.Forms.Label();
+            this.btnFindID = new System.Windows.Forms.Button();
+            this.lblBorrowedBy = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBoxMemberId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBoxMembers = new System.Windows.Forms.ComboBox();
@@ -87,7 +90,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 13);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(567, 273);
             this.groupBox1.TabIndex = 0;
@@ -251,12 +254,12 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox2.Controls.Add(this.dataGridViewHistory);
-            this.groupBox2.Location = new System.Drawing.Point(12, 292);
+            this.groupBox2.Location = new System.Drawing.Point(12, 291);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(567, 182);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "History of borrowers of this book";
+            this.groupBox2.Text = "Loan History";
             // 
             // dataGridViewHistory
             // 
@@ -281,7 +284,7 @@
             // 
             // btnLoan
             // 
-            this.btnLoan.Location = new System.Drawing.Point(16, 144);
+            this.btnLoan.Location = new System.Drawing.Point(16, 179);
             this.btnLoan.Name = "btnLoan";
             this.btnLoan.Size = new System.Drawing.Size(241, 30);
             this.btnLoan.TabIndex = 4;
@@ -299,8 +302,11 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox3.Controls.Add(this.lblCurrentBorrower3);
+            this.groupBox3.Controls.Add(this.btnFindID);
+            this.groupBox3.Controls.Add(this.lblBorrowedBy);
+            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.textBoxMemberId);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.comboBoxMembers);
@@ -308,10 +314,53 @@
             this.groupBox3.Controls.Add(this.btnLoan);
             this.groupBox3.Location = new System.Drawing.Point(12, 480);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(276, 191);
+            this.groupBox3.Size = new System.Drawing.Size(276, 225);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Loan this book:";
+            this.groupBox3.Text = "Loan this book";
+            // 
+            // lblCurrentBorrower3
+            // 
+            this.lblCurrentBorrower3.AutoSize = true;
+            this.lblCurrentBorrower3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCurrentBorrower3.ForeColor = System.Drawing.Color.Navy;
+            this.lblCurrentBorrower3.Location = new System.Drawing.Point(151, 152);
+            this.lblCurrentBorrower3.Name = "lblCurrentBorrower3";
+            this.lblCurrentBorrower3.Size = new System.Drawing.Size(104, 15);
+            this.lblCurrentBorrower3.TabIndex = 15;
+            this.lblCurrentBorrower3.Text = "{current borrower}";
+            this.lblCurrentBorrower3.Visible = false;
+            // 
+            // btnFindID
+            // 
+            this.btnFindID.Location = new System.Drawing.Point(189, 104);
+            this.btnFindID.Name = "btnFindID";
+            this.btnFindID.Size = new System.Drawing.Size(68, 23);
+            this.btnFindID.TabIndex = 20;
+            this.btnFindID.Text = "Find ID";
+            this.btnFindID.UseVisualStyleBackColor = true;
+            this.btnFindID.Click += new System.EventHandler(this.btnFindID_Click);
+            // 
+            // lblBorrowedBy
+            // 
+            this.lblBorrowedBy.AutoSize = true;
+            this.lblBorrowedBy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBorrowedBy.Location = new System.Drawing.Point(16, 152);
+            this.lblBorrowedBy.Name = "lblBorrowedBy";
+            this.lblBorrowedBy.Size = new System.Drawing.Size(129, 15);
+            this.lblBorrowedBy.TabIndex = 14;
+            this.lblBorrowedBy.Text = "Currently borrowed by:";
+            this.lblBorrowedBy.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(16, 107);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(111, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Find Member by ID:";
             // 
             // label10
             // 
@@ -322,23 +371,13 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "Loan date:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 107);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 15);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Member ID:";
-            // 
             // textBoxMemberId
             // 
-            this.textBoxMemberId.Location = new System.Drawing.Point(112, 104);
+            this.textBoxMemberId.Location = new System.Drawing.Point(133, 104);
             this.textBoxMemberId.MaxLength = 5;
             this.textBoxMemberId.Name = "textBoxMemberId";
-            this.textBoxMemberId.Size = new System.Drawing.Size(145, 23);
+            this.textBoxMemberId.Size = new System.Drawing.Size(50, 23);
             this.textBoxMemberId.TabIndex = 15;
-            this.textBoxMemberId.TextChanged += new System.EventHandler(this.textBoxMemberId_TextChanged);
             // 
             // label8
             // 
@@ -356,7 +395,6 @@
             this.comboBoxMembers.Name = "comboBoxMembers";
             this.comboBoxMembers.Size = new System.Drawing.Size(145, 23);
             this.comboBoxMembers.TabIndex = 7;
-            this.comboBoxMembers.SelectedIndexChanged += new System.EventHandler(this.comboBoxMembers_SelectedIndexChanged);
             // 
             // groupBox4
             // 
@@ -368,10 +406,10 @@
             this.groupBox4.Controls.Add(this.btnReturn);
             this.groupBox4.Location = new System.Drawing.Point(303, 480);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(276, 191);
+            this.groupBox4.Size = new System.Drawing.Size(276, 225);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Return this book:";
+            this.groupBox4.Text = "Return this book";
             // 
             // lblCurrentBorrower2
             // 
@@ -414,7 +452,7 @@
             // 
             // btnReturn
             // 
-            this.btnReturn.Location = new System.Drawing.Point(16, 144);
+            this.btnReturn.Location = new System.Drawing.Point(16, 179);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(241, 30);
             this.btnReturn.TabIndex = 4;
@@ -426,7 +464,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 683);
+            this.ClientSize = new System.Drawing.Size(591, 717);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -477,9 +515,12 @@
         private Label label8;
         private ComboBox comboBoxMembers;
         private Label label10;
-        private Label label9;
         private Label lblReturnFrom;
         private Label lblCurrentBorrower2;
         private Label label13;
+        private Button btnFindID;
+        private Label label11;
+        private Label lblCurrentBorrower3;
+        private Label lblBorrowedBy;
     }
 }

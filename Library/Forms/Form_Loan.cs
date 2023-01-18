@@ -33,9 +33,10 @@ namespace Library
             }
             else
             {
-                lblCurrentBorrower.Text = lblCurrentBorrower2.Text = currentBook.GetBorrower().GetInfo();
+                lblCurrentBorrower.Text = lblCurrentBorrower2.Text = lblCurrentBorrower3.Text = currentBook.GetBorrower().GetInfo();
                 btnLoan.Enabled = false;
                 lblReturnFrom.Visible = lblCurrentBorrower2.Visible = true;
+                lblBorrowedBy.Visible = lblCurrentBorrower3.Visible = true;
             }
 
             // Getting members in comboBox
@@ -57,24 +58,30 @@ namespace Library
             return source;
         }
 
-        // Displays the member's ID to match the selected Name
+        // Find a Member by ID
 
-        private void comboBoxMembers_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnFindID_Click(object sender, EventArgs e)
         {
-            Member member = (Member)comboBoxMembers.SelectedItem;
-            textBoxMemberId.Text = member.Id;
-        }
-
-        // Displays the member's Name to match the inputted ID
-
-        private void textBoxMemberId_TextChanged(object sender, EventArgs e)
-        {
-            foreach (Member member in Library.Members)
+            if (String.IsNullOrEmpty(textBoxMemberId.Text))
             {
-                if (member.Id == textBoxMemberId.Text)
+                MessageBox.Show("Enter an ID!");
+            }
+            else
+            {
+                foreach (Member member in Library.Members)
                 {
-                    comboBoxMembers.SelectedItem = member;
+                    if (member.Id == textBoxMemberId.Text)
+                    {
+                        comboBoxMembers.SelectedItem = member;
+
+                        MessageBox.Show($"Member found: {member}");
+                        return;
+                    }
                 }
+                textBoxMemberId.Clear();
+                comboBoxMembers.SelectedIndex = -1;
+
+                MessageBox.Show("Member not found. This ID does not exist!");
             }
         }
 
@@ -95,25 +102,9 @@ namespace Library
             {
                 MessageBox.Show("Enter a member name!");
             }
-            else if (String.IsNullOrEmpty(member_id))
-            {
-                MessageBox.Show("Enter a member ID!");
-            }
-            else if (!member_id.All(char.IsDigit))
-            {
-                MessageBox.Show("ID must be a numeric value!");
-            }
-            else if (member_id.Length != 5)
-            {
-                MessageBox.Show("ID must be 5 digits!");
-            }
             else if (member == null)
             {
                 MessageBox.Show("This member does not exist!");
-            }
-            else if (member_id != member.Id)
-            {
-                MessageBox.Show("Name and ID do not match!");
             }
             else
             {
@@ -126,7 +117,8 @@ namespace Library
 
                 GetData().ResetBindings(false);
                 lblReturnFrom.Visible = lblCurrentBorrower2.Visible = true;
-                lblCurrentBorrower.Text = lblCurrentBorrower2.Text = currentBook.GetBorrower().GetInfo();
+                lblBorrowedBy.Visible = lblCurrentBorrower3.Visible = true;
+                lblCurrentBorrower.Text = lblCurrentBorrower2.Text = lblCurrentBorrower3.Text = currentBook.GetBorrower().GetInfo();
                 btnLoan.Enabled = false;
                 btnReturn.Enabled = true;
             }
@@ -145,6 +137,7 @@ namespace Library
             GetData().ResetBindings(false);
             lblCurrentBorrower.Text = "Nobody!";
             lblReturnFrom.Visible = lblCurrentBorrower2.Visible = false;
+            lblBorrowedBy.Visible = lblCurrentBorrower3.Visible = false;
             btnLoan.Enabled = true;
             btnReturn.Enabled = false;
         }
