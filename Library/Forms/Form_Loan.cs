@@ -74,6 +74,7 @@ namespace Library
                     {
                         comboBoxMembers.SelectedItem = member;
 
+                        textBoxMemberId.Clear();
                         MessageBox.Show($"Member found: {member}");
                         return;
                     }
@@ -92,7 +93,6 @@ namespace Library
             // Initialize variables from inputs
 
             Member member = (Member)comboBoxMembers.SelectedItem;
-            string member_id = textBoxMemberId.Text;
             string borrowDate = datePickerLoan.Value.Date.ToString("d MMMM yyyy");
             string? returnDate = null;
 
